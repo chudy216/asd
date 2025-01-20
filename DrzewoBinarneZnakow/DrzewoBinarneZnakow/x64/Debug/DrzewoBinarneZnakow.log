@@ -1,0 +1,3 @@
+﻿  DrzewoBinarneZnakow.cpp
+C:\Users\kamil\source\repos\DrzewoBinarneZnakow\DrzewoBinarneZnakow\DrzewoBinarneZnakow.cpp(3,16): warning C4091: "typedef ": zignorowano na lewo od "elDrzewa" podczas gdy brak deklaracji zmiennej
+  DrzewoBinarneZnakow.vcxproj -> C:\Users\kamil\source\repos\DrzewoBinarneZnakow\x64\Debug\DrzewoBinarneZnakow.exe

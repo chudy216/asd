@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35004.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DrzewoBinarneZnakow", "DrzewoBinarneZnakow\DrzewoBinarneZnakow.vcxproj", "{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Debug|x64.ActiveCfg = Debug|x64
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Debug|x64.Build.0 = Debug|x64
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Debug|x86.ActiveCfg = Debug|Win32
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Debug|x86.Build.0 = Debug|Win32
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Release|x64.ActiveCfg = Release|x64
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Release|x64.Build.0 = Release|x64
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Release|x86.ActiveCfg = Release|Win32
+		{C9C27B48-71AF-44BF-88A4-8F274C72EBBC}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8EEA5D1B-2195-4F78-8AB0-5C6645BD5E39}
+	EndGlobalSection
+EndGlobal
