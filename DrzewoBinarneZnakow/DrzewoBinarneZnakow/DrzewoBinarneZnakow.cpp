@@ -34,6 +34,8 @@ void UZD(drzewo* d, string wartosc) {
         else {
             if ((*d)->przodek) {
                 if (*d == (*d)->przodek->prawy) {
+                    drzewo u = *d;
+
                     cout << "usun prawy";
                     return;
                 }
