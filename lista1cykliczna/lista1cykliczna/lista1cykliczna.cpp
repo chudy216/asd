@@ -74,19 +74,19 @@ string wyswietl_kon(lista l) {
     return komunikat;
 }
 string UPL(lista* l) {
-    lista p = 0;
+    lista* p = 0;
     if (*l == 0) return "lista byla pusta wiec nic nie usunieto";
-    p = (*l)->nast;
-    if (p != *l) {
-        lista pop = p;
-        while (pop->nast != *l) {
-            pop = pop->nast;
+    p = &(*l)->nast;
+    if (*p != *l) {
+        lista *pop = p;
+        while ((*pop)->nast != *l) {
+            *pop = (*pop)->nast;
         }
-        pop->nast = (*l)->nast;
+        (*pop)->nast = *p;
     }
     free(*l);
-    if (p != *l)
-        *l = p;
+    if (*p != *l)
+        *l = *p;
     else *l = NULL;
     return "poprawnie usunieto wartosc z poczatku listy";
 }
@@ -129,10 +129,11 @@ string DPEL(lista* l, int i, int n) {
             do {
                 x++;
                 *l = (*l)->nast;
-                if (*l == start || n <= 1)
+                if (*l == start || n < 1)
                     return "lista nie posiada tylu elementow";
             } while (x < n);
         DNPL(l, i);
+        if((*l)->nast != start)
         *l = start;
     }
     else
@@ -147,7 +148,7 @@ string DZEL(lista* l, int i, int n) {
             do {
                 x++;
                 *l = (*l)->nast;
-                if (*l == start || n <= 1)
+                if (*l == start || n < 1)
                     return "lista nie posiada tylu elementow";
             } while (x <= n);
         DNPL(l, i);
@@ -163,6 +164,7 @@ string DPWE(lista* l, int i, int n) {
         do {
             if ((*l)->klucz == n) {
                 DNPL(l, i);
+                if((*l)->nast != start)
                 *l = start;
                 return "poprawnie dodano nowy element przed pierwszym elementem o wartosci " + to_string(n);
             }
@@ -195,13 +197,14 @@ string UEL(lista* l, int i) {
         if (x < i)
             do {
                 x++;
-                *l = (*l)->nast;
+                l = &(*l)->nast;
                 if (*l == start || i <= 1)
                     return "lista nie posiada tylu elementow";
             } while (x < i);
+        if (*l == start)
+            start = start->nast;
         UPL(l);
-        if (*l != start)
-            *l = start;
+        *l = start;
     }
     else
         return "lista nie posiada tylu elementow";
@@ -212,6 +215,8 @@ string UWE(lista* l, int n) {
     if (*l)
         do {
             if ((*l)->klucz == n) {
+                if (*l == start)
+                    start = start->nast;
                 UPL(l);
                 if (*l != start)
                     *l = start;
