@@ -1,1 +1,1 @@
-K:\Studenci\PK\Prywatne\322949\algorytmy\asd-main\lista1cykliczna\lista1cykliczna\x64\Debug\lista1cykliczna.exe
+C:\Users\kamil\source\repos\lista1cykliczna\lista1cykliczna\x64\Debug\lista1cykliczna.exe
