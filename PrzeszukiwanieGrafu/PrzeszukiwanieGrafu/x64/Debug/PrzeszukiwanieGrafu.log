@@ -1,0 +1,4 @@
+﻿  PrzeszukiwanieGrafu.cpp
+C:\Users\kamil\source\repos\PrzeszukiwanieGrafu\PrzeszukiwanieGrafu\PrzeszukiwanieGrafu.cpp(174,11): warning C4267: "inicjowanie": konwersja z "size_t" do "int", możliwa utrata danych
+C:\Users\kamil\source\repos\PrzeszukiwanieGrafu\PrzeszukiwanieGrafu\PrzeszukiwanieGrafu.cpp(235,51): warning C4390: ";": znaleziono kontrolowaną pustą instrukcję; czy to było zamierzone?
+  PrzeszukiwanieGrafu.vcxproj -> C:\Users\kamil\source\repos\PrzeszukiwanieGrafu\x64\Debug\PrzeszukiwanieGrafu.exe
