@@ -1,0 +1,5 @@
+﻿  sortowania.cpp
+C:\Users\kamil\source\repos\sortowania\sortowania\sortowania.cpp(70,12): warning C4101: "j": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\kamil\source\repos\sortowania\sortowania\sortowania.cpp(70,9): warning C4101: "i": lokalna zmienna, do której nie istnieje odwołanie
+C:\Users\kamil\source\repos\sortowania\sortowania\sortowania.cpp(211,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  sortowania.vcxproj -> C:\Users\kamil\source\repos\sortowania\x64\Debug\sortowania.exe
