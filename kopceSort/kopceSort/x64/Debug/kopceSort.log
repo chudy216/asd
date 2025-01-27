@@ -1,0 +1,3 @@
+﻿  kopce.cpp
+C:\Users\kamil\source\repos\kopceSort\kopceSort\kopce.cpp(62,15): warning C4244: "argument": konwersja z "time_t" do "unsigned int", możliwa utrata danych
+  kopceSort.vcxproj -> C:\Users\kamil\source\repos\kopceSort\x64\Debug\kopceSort.exe
