@@ -16,33 +16,25 @@ string DNPL(lista* l, int i)
     lista p = (lista)malloc(sizeof(elListy));
     p->klucz = i;
     if (*l) {
-        p->nast = *l;
-        p->pop = (*l)->pop;
-        (*l)->pop->nast = p;
-        (*l)->pop = p;
-    }
-    else {
-        p->pop = p;
-        p->nast = p;
-    }
-    *l = p;
-    return "poprawnie dodano wartosc na poczatek listy";
-}
-string DNKL(lista* l, int i)
-{
-    lista p = (lista)malloc(sizeof(elListy));
-    p->klucz = i;
-    if (*l) {
-        p->nast = *l;
-        p->pop = (*l)->pop;
-        (*l)->pop->nast = p;
-        (*l)->pop = p;
+        (*l)->nast->pop = p;
+        p->klucz = (*l)->klucz;
+        p->nast = (*l)->nast;
+        p->pop = *l;
+        (*l)->nast = p;
+        (*l)->klucz = i;
     }
     else {
         p->pop = p;
         p->nast = p;
         *l = p;
     }
+    
+    return "poprawnie dodano wartosc na poczatek listy";
+}
+string DNKL(lista* l, int i)
+{
+    DNPL(l, i);
+    *l = (*l)->nast;
     return "poprawnie dodano wartosc za elementem";
 }
 string wyswietl(lista l) {
@@ -81,17 +73,21 @@ string wyswietl_obie(lista l) {
         komunikat = to_string(l->klucz);
         l = l->nast;
     }
+    else
+        return "[ ] [ ]";
     while (l && l != start) {
-        komunikat = to_string(l->klucz) + " " + komunikat;
+        komunikat = komunikat + " " + to_string(l->klucz);
         l = l->nast;
     }
     komunikat = "[ " + komunikat + " ]";
+    l = l->pop;
+    start = start->pop;
     if (l) {
         komunikat2 = to_string(l->klucz);
         l = l->pop;
     }
     while (l && l != start) {
-        komunikat2 = to_string(l->klucz) + " " + komunikat2;
+        komunikat2 = komunikat2 + " " + to_string(l->klucz);
         l = l->pop;
     }
     komunikat2 = "[ " + komunikat2 + " ]";
@@ -102,22 +98,29 @@ string UPL(lista* l) {
     lista p = 0;
     if (*l == NULL) return "lista byla pusta wiec nic nie usunieto";
     p = (*l)->nast;
-    p->pop = (*l)->pop;
-    (*l)->pop->nast = p;
-    free(*l);
-    if (p != *l)
-        *l = p;
-    else *l = NULL;
+    if (p == *l) {
+        free(*l);
+        *l = NULL;
+        return "poprawnie usunieto wartosc z poczatku listy";
+    }
+    (*l)->nast = p->nast;
+    p->nast->pop = *l;
+    (*l)->klucz = p->klucz;
+    free(p);
     return "poprawnie usunieto wartosc z poczatku listy";
 }
 string UKL(lista* l) {
     if (*l == 0) return "lista byla pusta wiec nic nie usunieto";
-    lista p = (*l)->pop;
-    (*l)->pop = p->pop;
-    (*l)->pop->nast = *l;
-    free(p);
-    if(p == *l)
+    if ((*l)->nast == *l) {
+        free(*l);
         *l = NULL;
+        return "poprawnie usunieto wartosc z końca listy";
+    }
+    lista p = (*l)->pop;
+    lista r = p->pop;
+    r->nast = *l;
+    (*l)->pop = r;
+    free(p);
     return "poprawnie usunieto wartosc z konca listy";
 }
 
@@ -139,15 +142,13 @@ string DPEL(lista* l, int i, int n) {
     int x = 1;
     lista start = *l;
     if (*l) {
-        if (x < n)
             do {
                 x++;
-                *l = (*l)->nast;
-                if (*l == start || n<=1)
+                l = &(*l)->nast;
+                if (*l == start || n<1)
                     return "lista nie posiada tylu elementow";
             } while (x < n);
         DNPL(l, i);
-        *l = start;
     }
     else
         return "lista nie posiada tylu elementow";
@@ -160,12 +161,11 @@ string DZEL(lista* l, int i, int n) {
         if (x <= n)
             do {
                 x++;
-                *l = (*l)->nast;
-                if (*l == start || n <= 1)
+                l = &(*l)->nast;
+                if (*l == start || n < 1)
                     return "lista nie posiada tylu elementow";
             } while (x <= n);
         DNPL(l, i);
-        *l = start;
     }
     else
         return "lista nie posiada tylu elementow";
@@ -177,11 +177,10 @@ string DPWE(lista* l, int i, int n) {
         do {
             if ((*l)->klucz == n) {
                 DNPL(l, i);
-                *l = start;
                 return "poprawnie dodano nowy element przed pierwszym elementem o wartosci " + to_string(n);
             }
             else
-                *l = (*l)->nast;
+                l = &(*l)->nast;
         } while (*l != start);
     return "szukany element nie zostal znaleziony";
 
@@ -191,13 +190,12 @@ string DZWE(lista* l, int i, int n) {
     if (*l)
         do {
             if ((*l)->klucz == n) {
-                *l = (*l)->nast;
+                l = &(*l)->nast;
                 DNPL(l, i);
-                *l = start;
                 return "poprawnie dodano nowy element za pierwszym elementem o wartosci " + to_string(n);
             }
             else
-                *l = (*l)->nast;
+                l = &(*l)->nast;
         } while (*l != start);
     return "szukany element nie zostal znaleziony";
 
@@ -210,13 +208,16 @@ string UEL(lista* l, int i) {
         if (x < i)
             do {
                 x++;
-                *l = (*l)->nast;
+                l = &(*l)->nast;
                 if (*l == start || i <= 1)
                     return "lista nie posiada tylu elementow";
             } while (x < i);
-        UPL(l);
-        if(*l!=start)
+        if ((*l)->nast == start) {
+            UKL(&start);
             *l = start;
+        }
+        else
+            UPL(l);
     }
     else
         return "lista nie posiada tylu elementow";
@@ -227,13 +228,16 @@ string UWE(lista* l, int n) {
     if (*l)
         do {
             if ((*l)->klucz == n) {
-                UPL(l);
-                if(*l!=start)
+                if ((*l)->nast == start) {
+                    UKL(&start);
                     *l = start;
+                }
+                else
+                    UPL(l);
                 return "usunieto pierwszy element o wartosci " + to_string(n);
             }
             else
-                *l = (*l)->nast;
+                l = &(*l)->nast;
         } while (*l != start);
     return "szukany element nie zostal znaleziony";
 }
@@ -243,19 +247,24 @@ string zad11(lista* l, int k) {
     if (*l)
         do {
             x++;
-            *l = (*l)->nast;
+            l = &(*l)->nast;
         } while (*l != start);
     else
         return "lista byla pusta";
     while (x > 1) {
         i++;
         if (i == k) {
-            UPL(l);
+            if ((*l)->nast == start) {
+                UKL(&start);
+                *l = start;
+            }
+            else
+                UPL(l);
             i = 0;
             x--;
         }
         else
-            *l = (*l)->nast;
+            l = &(*l)->nast;
     }
     return "pozostala wartosc " + to_string((*l)->klucz);
 }
