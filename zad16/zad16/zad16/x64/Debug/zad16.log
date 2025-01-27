@@ -1,0 +1,3 @@
+﻿  zad16.cpp
+C:\Users\kamil\source\repos\zad16\zad16\zad16.cpp(6,16): warning C4091: "typedef ": zignorowano na lewo od "elDrzewa" podczas gdy brak deklaracji zmiennej
+  zad16.vcxproj -> C:\Users\kamil\source\repos\zad16\zad16\x64\Debug\zad16.exe
